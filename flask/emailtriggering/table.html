@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>documnet</title>
+</head>
+<body>
+<table border =1>
+    <thead>
+      <tr>
+          <th scope="col">comapny</th>
+        <th scope="col">subscription</th>
+        <th scope="col">lastupdated date</th>
+        <th scope="col">excel cost</th>
+        <th scope="col">mongo_cost</th>
+        <th scope="col">cloud optional cost</th>
+      </tr>
+      {% for row in dea %}
+        <tr>
+           <td>{{ row[0]}}</td>
+            <td>{{ row[1]}}</td>
+  
+              <td>{{ row[2]}}</td>
+               <td>{{row[3]}}</td>
+               <td>{{row[4]}}</td>
+               <td>{{row[5]}}</td>
+        </tr>
+      {% endfor %}
+    </thead>
+    </tbody>
+  </table>
+</body>
+</html>
