@@ -20,5 +20,30 @@ def get_user_id(cred_id):
     cur.close()
     conn.close()
 #________________________________________________________________________________________________
+#in the sql the date will in the datetime object .have to convert datetimeobject to string 
+from datetime import datetime, date
 
+  for all_cost,all_subs in zip(res,res1):
+        dates2 = all_cost[3]  # holds the date datetime.datetime(yyyy-mm-dd-)
+        #print(dates2)
+        date_part = dates2.date()
+        date_str = date_part.isoformat()
+#_______________________________________________________________________________
 
+# converting string to dattimeobject 
+from datetime import datetime
+
+date_string = "2023-08-28 10:30:00"
+format_string = "%Y-%m-%d %H:%M:%S"
+
+datetime_object = datetime.strptime(date_string, format_string)
+#________________________________________________________________________________-
+#if u want to add the hours, min sec date to another dattimeobject then use time delta 
+end_date = start_date + timedelta(hours=6)
+#here we have start time and end time we have to add 5 min to each start_time ...then till  we reach end time .
+ while start_time <=end_time:
+            date_ = start_time.strftime("%d-%m-%Y")
+            hour = start_time.strftime("%H")
+            minute = start_time.strftime("%M")
+            start_time+= timedelta(minutes=5)
+#_________________________________________________________________________________________________________

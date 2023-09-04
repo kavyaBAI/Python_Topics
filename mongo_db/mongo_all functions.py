@@ -37,4 +37,67 @@ def dump_collections(matched_collections,db_str1,db_str2):
     source_client.close()
     target_client.close()
 #_____________________________________________________________________________________
-
+#for every different collection insert the values 
+#_______________________________________________________________________________________
+# here for every collection insert the data ,if i do one by one insertion it will take time.so append all the data in the list
+def get_customer_mysql2(db_str):
+    conn, cursor = get_connection(db_str)
+    #print(res)
+    sql = "SELECT id , subscription_id FROM customer_subscription;"
+    cursor.execute(sql)
+    res1 = cursor.fetchall()
+    st = time.time()
+    for i, (idx, sub) in enumerate(res1):
+        print(i, len(res1))
+        sql = "SELECT * FROM customer_cost where subscription_id = %s"%idx
+        cursor.execute(sql)
+        res = cursor.fetchall()
+        collection = sub.replace("-","")+"_cost"
+        insertion_data = []
+        del_list = []
+        for [idx2,s_idx, cost, date_, curr] in res:
+            date_part = date_.date()
+            date_str = date_part.isoformat()
+            data_dict = {"sub":sub , "cost" : cost , "cost_p": 0, "date":date_str , "currency": curr}
+            insertion_data.append(data_dict)
+            del_list.append(date_str)
+        if insertion_data:
+            query = {"date":{"$in":del_list}}
+            export_data.deletedata(db_str1, collection, query)
+            export_data.insertdata(db_str1, collection, insertion_data)
+    cursor.close()
+    conn.close()
+    print(time.time()- st)
+    return all_data
+# in the below function i was inserting one by one wich was takin more for one collection to insert the data
+def get_customer_mysql(db_str):
+    conn, cursor = get_connection(db_str)
+    sql = "SELECT * FROM customer_cost;"
+    cursor.execute(sql)
+    res = cursor.fetchall()
+    #print(res)
+    sql = "SELECT id , subscription_id FROM customer_subscription;"
+    cursor.execute(sql)
+    res1 = cursor.fetchall()
+    subs_dict = {}
+    for (idx, sub) in res1:
+        subs_dict[idx] = sub
+    res_dict = {}
+    ls = []
+    data_dict_ls = []
+    for all_cost in res:
+        dates2 = all_cost[3]
+        #print(dates2)
+        date_part = dates2.date()
+        date_str = date_part.isoformat()
+        sub_id = all_cost[1]
+        subs = subs_dict.get(sub_id)
+        res = subs.replace("-","")
+        X = res+"_cost"
+        collection = X
+        data_dict = {"sub":subs , "cost" : all_cost[2] , "cost_p": 0, "date":date_str , "currency": all_cost[4]}
+        all_data = export_data.insertdata(db_str1, collection, data_dict_list)
+        print( data_dict_list)
+    cursor.close()
+    conn.close()
+#__________________________________________________________________________________________________________________
