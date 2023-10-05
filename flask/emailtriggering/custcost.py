@@ -93,3 +93,9 @@ if __name__ == '__main__':
             email_body = f"The hostpool insertion has not run for the cred id :{cred_id}.\n<br>Last exec time: {datetime1}.\n<br><br>Thanks\n<br>Cogniquest Team"
             send_email('congniquest.team@gmail.com', [('kavya', 'kavyaadithi8787@gmail.com')], email_subject, email_body)
 #___________________________________________________________________________________________________
+#update query in mingo using set opeator
+ query = {"type":"session"}
+    new_values = {"$set":{"max_id":res1}}
+    val = export_data.updatedata(db_str, "citrix_report_id", query, new_values)
+    print(val)
+#__________________________________________________________________________________________

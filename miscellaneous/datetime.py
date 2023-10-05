@@ -47,3 +47,5 @@ end_date = start_date + timedelta(hours=6)
             minute = start_time.strftime("%M")
             start_time+= timedelta(minutes=5)
 #_________________________________________________________________________________________________________
+ start_datetime = start_datetime.rstrip('Z')  # Remove 'Z' character from the end of the string
+#-----------------------------------------------------------------------------------------------------
