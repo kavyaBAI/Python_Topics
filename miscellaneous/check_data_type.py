@@ -16,3 +16,21 @@ if __name__ == '__main__':
         "abmf_to_anuntamum_Curr": "INR",
         "abmf_to_anuntamum_P": "microsoft.network",
         "abmfanuntavpngw": 379.52309999999943}]
+#__________________________________________________________
+def two_dict_cost(csv_dict,res_dict,cust_name):
+    cost_ls = []
+    cost_p_ls = []
+    for (sub,date),[cost1,cost_p1] in res_dict.items():
+        if not isinstance(csv_dict.get((sub,date)),float):
+            print('patner cost')
+            cost2 = csv_dict.get((sub,date))[0]
+            cost_p2 = csv_dict.get((sub,date))[1]
+            cost_diff = abs(cost1 - cost2)
+            cost_p_diff = abs(cost_p1- cost_p2)
+            if  cost_p_diff >1 or cost_diff>1:
+                print(cost_p_diff)
+                if cost_p_diff>1:
+                    cost_p_ls.append((sub,date,cust_name))
+                else:
+                    cost_ls.append((sub,date,cust_name))
+#___________________________________________________________________

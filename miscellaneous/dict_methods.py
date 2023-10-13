@@ -97,5 +97,14 @@ if are_dicts_equal(dict1, dict2):
 else:
     print("The dictionaries are different.")
 #_____________________________________________________________________________________________________
-
+#date = ['2023-08-01',"2023-08-02","2023-09-03"]
+#dates are given if the key is not present create a dictionary.if its present  append all the dates 
+res_dict = {}
+for i in date:
+    y,m,d = i.split('-')
+    cur_key = "%s-%s"%(y,m)
+    if not res_dict.get(cur_key):
+        res_dict[cur_key] = []
+    res_dict[cur_key].append(d)
+#___________________________________________________________________________
 
