@@ -1,4 +1,4 @@
-#set opeartions   
+#set opeartions   set is a data type 
                     cogni_set = set(i.keys())
                     anun_set = set(j.keys())
 

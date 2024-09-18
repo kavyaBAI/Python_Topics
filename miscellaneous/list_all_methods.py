@@ -22,10 +22,20 @@ def resd_files():
     return ls
 
  #_____________________________________________________
-
-
-
-
+#if u want to check wheater the list is empty or not. then we can use many method
+#1. len() 
+# 2if ls is'None'
+#______________________________________
+# #if u want to know the  len of the dictionary 
+if not dict.get('name'):
+     pass
+#then the value is not present in that dictinary that key is not there 
+#----------------------------------------------------------------------
+#simple example 
+#input :- ls [1,2]
+#output :- ls[1,2,3]
+ls.append(sum(ls))
+#___________________________________________________________________
 
 
 

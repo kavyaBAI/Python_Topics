@@ -1,4 +1,5 @@
 import requests
+requests.packages.urllib3.disable_warnings() #if we are facing any security issues we can use this 
 
 def get_endpoint(url):
     data = {

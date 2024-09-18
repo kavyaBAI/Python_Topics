@@ -33,3 +33,21 @@ print(res_dict)
 #we have df we want its index how we do it
    for index, row in df.iterrows():
         hp = row["DesktopGroupName"]
+#___________________________________________________________________________________________
+# when we read excel some fields will be null which nan but pandas dataframe
+#consider as float and throw an error ,so to slove this lets check its its not nan method (pd.notna())
+#which is not nan () method 
+def read_excel():
+  file_path = r"D:\newsetoftask\cq_mailcontacts.xlsx"
+  df = pd.read_excel(file_path,usecols=["To: (Address)","CC: (Address)"])
+  res = len(df.index)
+  for i in range(res):
+    value = df.iloc[i]
+    to_email = value[0]
+    cc_email = value[1]
+    if pd.notna(to_email) or pd.notna(cc_email): #this method 
+      emial_col1 = re.findall(r"[A-Za-z0-9._%+-]+"r"@[A-Za-z0-9.-]+"r"\.[A-Za-z]{2,4}", str(to_email)) 
+      emial_col2 = re.findall(r"[A-Za-z0-9._%+-]+"r"@[A-Za-z0-9.-]+"r"\.[A-Za-z]{2,4}", str(cc_email))
+      print(emial_col1 )
+#____________________________________________________________________________________________________
+           

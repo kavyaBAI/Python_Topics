@@ -21,7 +21,7 @@ def two_dict_cost(csv_dict,res_dict,cust_name):
     cost_ls = []
     cost_p_ls = []
     for (sub,date),[cost1,cost_p1] in res_dict.items():
-        if not isinstance(csv_dict.get((sub,date)),float):
+        if not isinstance(csv_dict.get((sub,date)),float):if 
             print('patner cost')
             cost2 = csv_dict.get((sub,date))[0]
             cost_p2 = csv_dict.get((sub,date))[1]

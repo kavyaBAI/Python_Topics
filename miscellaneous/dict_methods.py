@@ -1,5 +1,5 @@
 #____________________________________________________________________
-# i have to return the output in the form of {"same-date":{"sub1":[],"sub2":[]}
+# i have to return the output in the form of {"same-date":{"sub1":[],"sub2":[]}}
 # for that create sub dictinoary return those sub dict ,using update method in  the dictionary append the dict
     
 def get_all_cost_gc(dbstring, collection_name, sub, date_list, userid):
@@ -31,7 +31,8 @@ def graph_click():
     final_dict[date] = cust_data
 #_________________________________________________________________________________________________________
 
-#{k:{k:v},{k:v}} dict of dict
+#{k:{k:v},{k:v}} dict of dict nested dictinoary 
+#output 
 ls_dict = {1:{"name":'a','val':2,"val3":'4'},
         2:{"name":'b',"val":5,"val3":4},1:{"name":'b',"val":5,"val3":4}}
 res_dict = {}
@@ -107,4 +108,66 @@ for i in date:
         res_dict[cur_key] = []
     res_dict[cur_key].append(d)
 #___________________________________________________________________________
+#nested condition check on the dictinoary 
+      if not final_dict.get(date_str, {}):
+            final_dict[date_str] = {}
+        if not final_dict[date_str].get(hp):
+            final_dict[date_str][hp] = active_cnt
+#________________________________________________________________________________
+#here i need to add the values of age in the dict this how it can be done
+
+val ={'name':'kavya','age':4,'phno':1234}
+res_dict = {}
+key = ('date','hp') #mutilpe keys nd values u will get from the dict
+if not res_dict.get(key):
+    res_dict[key]=value
+else:
+    res_dict[key]['age']+=age
+print(res_dict )
+#___________________________________________________________________________________
+datels = ["2023-12-24","2023-12-25","2022-01-26"]
+dict_ls = [{"cost":[4,8,12],"user":"kavya","children":[{"cost":[2,4,8],"desk":"ka1"},{"cost":[2,4,8],"desk":"ka2"}]}]
+#output :{'cost': [12, 12, 24], 'user': 'kavya', 'children': [{'cost': [6, 8, 14], 'desk': 'ka1'}, {'cost': [6, 8, 14], 'desk': 'ka2'}
+for data in dict_ls:
+    childs = data['children']
+    costs = data["cost"]
+    oder_key = []
+    old_dict = {}
+    for im,dm in  enumerate(datels):
+        y,m,d = dm.split("-")
+        key = "%s_%s"%(y,m)
+        if key not in oder_key:
+            oder_key.append(key)
+        if key not in  old_dict:
+            old_dict[key] = costs[im]
+        else:
+            old_dict[key] += costs[im]
+        
+    for child in childs:
+        cost = child['cost']
+        desk = child["desk"]
+        new_dict = {}
+        new_ls = []
+        for id, dates in enumerate(datels):
+            y,m,d = dates.split("-")
+            key = "%s_%s"%(y,m)
+            new_key = (key,desk)
+            if key not in new_ls:
+                new_ls.append(key)
+            # new_key = (key,desk)
+            if key not in new_dict:
+                new_dict[key] = cost[id]
+            else:
+                new_dict[key]+= cost[id]
+        cost_of_child = [new_dict[k]for k in new_ls]
+        cost_of_child.append(sum(cost_of_child))
+        child["cost"] = cost_of_child
+    cost_of_old = [old_dict[k]for k in new_ls]
+    cost_of_old.append(sum(cost_of_old))
+    data["cost"] = cost_of_old
+    print(data)
+#__________________________________________________
+       
+        
+            
 

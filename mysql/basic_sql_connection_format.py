@@ -1,5 +1,6 @@
 import MySQLdb
 #from config import db_str1
+import mysql.connector
 
 
 

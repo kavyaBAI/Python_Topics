@@ -23,3 +23,17 @@
 #then we can use regex
 pattern = {"date": {"$regex": "T$"}}
 #_____________________________________________
+#using in queries
+{"subscription":{"$in":sub_list}, "date":{"$in":all_dates}})
+#another  way of in opeartor using in 
+ if filters:
+       if "hostpools" in filters:
+          query["hostpool_name"] = {"$in": hostpools}
+       if "regions" in filters:
+          query["location"] = {"$in": regions}
+       #if "tags" in regions:
+       #if "subscriptions" in filters:
+       query["subscription"] = {"$in": subscriptions}
+#______________________________________________________________________________________
+# like query in mongo 
+{sub_list :/b345/}
