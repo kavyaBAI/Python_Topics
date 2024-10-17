@@ -64,5 +64,17 @@ if __name__ =='__main__':
     url = 'http://4.246.189.243/customers/subscription'
     get_endpoint(url)
 
+#___________________________________________________________________________
+# basic structure of request module
+import requests
+
+requests.get(url)
+requests.get(url, json=payload, verify=False)
+requests.get(url,  json=payload, headers={‘key’:’value’}, verify=False)
+response = requests.get(url)
+response.status_code()
+response.content
+response.text
+
 
 

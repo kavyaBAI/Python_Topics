@@ -36,6 +36,11 @@ if not dict.get('name'):
 #output :- ls[1,2,3]
 ls.append(sum(ls))
 #___________________________________________________________________
+#i have ls1 = [(fd_id,fd_name),(),()]
+ls2 = [(fd_id,file_count),()]
+ls1_dict = {id_:name for id_,name in ls1}
+final_list = [[ls1_dict[fd_id],fi_count,fd_id]for fd_id,fi_count in ls2]
+
 
 
 
