@@ -43,7 +43,7 @@ LINE 1: ...(2,'folder2',6,'high','daily','01:00 AM','Sunday','','2024-0...
             this is the error i was facing i was inserting the wrong data type value value to it 
 i defined int but passing ''(string)
 
-#
+
 
 
 
